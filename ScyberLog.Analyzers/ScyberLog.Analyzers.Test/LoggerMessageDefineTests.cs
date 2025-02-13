@@ -90,40 +90,5 @@ public class Program
 
             Assert.Equal(expectedResult, result);
         }
-
-        [Theory]
-        [InlineData(@"[LoggerMessage(eventId:8, level: LogLevel.Critical, message: {|AA0008:""{Thing1}{Thing2{Thing3}""|})]")]
-        [InlineData(@"[LoggerMessage(EventId = 8, Level = LogLevel.Critical, Message = {|AA0008:""{Thing1}{Thing2{Thing3}""|})]")]
-        public async Task AA0008IsProducedForInvalidLoggerMessageAttribute(string attribute)
-        {
-            string code = @$"
-using System;
-using Microsoft.Extensions.Logging;
-public static partial class Log
-{{
-    {attribute}
-    public static partial void LogMessage(
-        this ILogger logger,
-        string thing1,
-        string thing2,
-        string thing3,
-        Exception ex);
-}}
-
-public static partial class Log
-{{
-    public static partial void LogMessage(
-        this ILogger logger,
-        string thing1,
-        string thing2,
-        string thing3,
-        Exception ex) {{}}
-}}";
-            await new VerifyCS.Test
-            {
-                TestCode = code,
-                ReferenceAssemblies = AdditionalMetadataReferences.DefaultWithMELogging,
-            }.RunAsync();
-        }
     }
 }

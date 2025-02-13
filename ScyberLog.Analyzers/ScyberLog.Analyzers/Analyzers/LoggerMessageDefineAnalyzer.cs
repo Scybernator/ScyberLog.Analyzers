@@ -68,69 +68,7 @@ namespace ScyberLog.Analyzers
                 {
                     ctx.RegisterOperationAction(x => AnalyzeInvocation(x, loggerType, loggerExtensionsType, loggerMessageType), OperationKind.Invocation);
                 }
-
-                //TODO ALY: this is covered by https://learn.microsoft.com/en-us/dotnet/fundamentals/syslib-diagnostics/syslib1022
-                //handle compile-time logging source generation 
-                //https://learn.microsoft.com/en-us/dotnet/core/extensions/logger-message-generator
-                if (wellKnownTypeProvider.TryGetOrCreateTypeByMetadataName(LoggingTypeNames.MicrosoftExtensionsLoggingLoggerMessageAttribute, out var loggerMessageAttributeType))
-                {
-                    ctx.RegisterOperationAction(x => AnalyzeMethod(x, loggerMessageAttributeType), OperationKind.Attribute);
-                }
             });
-        }
-
-        private void AnalyzeMethod(OperationAnalysisContext context, INamedTypeSymbol loggerMessageAttributeType)
-        {
-            if (context.Operation is IAttributeOperation attributeOp)
-            {
-                var attributeSymbol = attributeOp.SemanticModel.GetSymbolInfo(attributeOp.Syntax).Symbol as IMethodSymbol;
-                if (attributeSymbol?.ContainingType.Equals(loggerMessageAttributeType, SymbolEqualityComparer.Default) != true)
-                {
-                    return;
-                }
-
-                if (attributeOp.Operation is IObjectCreationOperation objectCreationOp)
-                {
-                    if (FindMessageInitializer(objectCreationOp, out var initializer))
-                    {
-                        AnalyzeFormatArgument(context, formatExpression: initializer.Value);
-                    }
-
-                    if (!FindLogParameters(attributeSymbol, out var messageArgument))
-                    {
-                        return;
-                    }
-
-                    var arg = objectCreationOp.Arguments.FirstOrDefault(argument =>
-                    {
-                        var parameter = argument.Parameter;
-                        return SymbolEqualityComparer.Default.Equals(parameter, messageArgument);
-                    });
-
-                    if (arg?.Value is not null)
-                    {
-                        AnalyzeFormatArgument(context, formatExpression: arg?.Value);
-                    }
-                }
-            }
-        }
-
-        private bool FindMessageInitializer(IObjectCreationOperation objectCreationOp, out ISimpleAssignmentOperation initializer)
-        {
-            initializer = null;
-            var assignmentOps = objectCreationOp.ChildOperations.OfType<IObjectOrCollectionInitializerOperation>()
-                .SelectMany(x => x.Initializers.OfType<ISimpleAssignmentOperation>());
-            foreach (var assignmentOp in assignmentOps)
-            {
-                var propertyReference = assignmentOp.ChildOperations.OfType<IPropertyReferenceOperation>()
-                    .FirstOrDefault(x => x.Property.Name == "Message");
-                if (propertyReference is not null)
-                {
-                    initializer = assignmentOp;
-                }
-            }
-
-            return initializer != null;
         }
 
         private void AnalyzeInvocation(OperationAnalysisContext context, INamedTypeSymbol loggerType, INamedTypeSymbol loggerExtensionsType, INamedTypeSymbol loggerMessageType)
