@@ -1,18 +1,18 @@
 # ScyberLog.Analyzers
-This repository contains a single analyzer to determine if the template for a call to one of the logging methods defined on `Microsoft.Extensions.Logging.ILogger` has an invalid messaage template string. If the template is invalid, it will throw a runtime FormatException which is obviously bad because:
+This repository contains a single analyzer to determine if a call to one of the logging methods defined on `Microsoft.Extensions.Logging.ILogger` has an invalid messaage template string. If the template is invalid, it will throw a runtime FormatException which is obviously bad because:
 1. Your logging framework should not be crashing your app.
 1. Much logging only ocurrs on the sad path, inside exception handlers, which is a place you do not want additional exceptions thrown.
 1. Some log calls may only occur rarely (as on particular exceptions), setting a time bomb in your application.
 1. You lose any information about the thing you were trying to log.
 
-By default this diagnostic has it's severity set to `Error` but can be downgraded to `Warning` by adding the following to your editor.config:
+By default this diagnostic has its severity set to `Error` but can be downgraded to `Warning` by adding the following to your editor.config:
 
 ```
 # AA0008: Invalid log message template format.
 dotnet_diagnostic.AA0008.severity = warning
 ```
 
-Note that there is a built-in diagnostic for this in the upcoming NetAnalyzers release, at which point this package will be obsolete.
+Note that there is a built-in diagnostic (CA2023) for this in the upcoming NetAnalyzers release, at which point this package will be obsolete.
 
 <!--
 
