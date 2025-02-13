@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35707.178
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScyberLog.Analyzers", "ScyberLog.Analyzers\ScyberLog.Analyzers\ScyberLog.Analyzers.csproj", "{B823432E-709A-4172-851A-21A1CE319B71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScyberLog.Analyzers.Package", "ScyberLog.Analyzers\ScyberLog.Analyzers.Package\ScyberLog.Analyzers.Package.csproj", "{D6ACD59F-6087-41FC-9D88-BF9B768544D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScyberLog.Analyzers.Test", "ScyberLog.Analyzers\ScyberLog.Analyzers.Test\ScyberLog.Analyzers.Test.csproj", "{2AACA9E9-FAAC-4799-A118-3B0602C03CE5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{416425B0-C264-45D2-BA8C-E554DB187300}"
+	ProjectSection(SolutionItems) = preProject
+		ReadMe.md = ReadMe.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B823432E-709A-4172-851A-21A1CE319B71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B823432E-709A-4172-851A-21A1CE319B71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B823432E-709A-4172-851A-21A1CE319B71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B823432E-709A-4172-851A-21A1CE319B71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6ACD59F-6087-41FC-9D88-BF9B768544D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6ACD59F-6087-41FC-9D88-BF9B768544D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6ACD59F-6087-41FC-9D88-BF9B768544D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6ACD59F-6087-41FC-9D88-BF9B768544D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AACA9E9-FAAC-4799-A118-3B0602C03CE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AACA9E9-FAAC-4799-A118-3B0602C03CE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AACA9E9-FAAC-4799-A118-3B0602C03CE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AACA9E9-FAAC-4799-A118-3B0602C03CE5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CC5DE4C4-BC87-46E4-B046-BC53A6079F42}
+	EndGlobalSection
+EndGlobal
