@@ -5,7 +5,7 @@ This repository contains a single analyzer to determine if a call to one of the 
 1. Some log calls may only occur rarely (as on particular exceptions), setting a time bomb in your application.
 1. You lose any information about the thing you were trying to log.
 
-By default this diagnostic has its severity set to `Error` but can be downgraded to `Warning` by adding the following to your editor.config:
+By default this diagnostic has its severity set to `Error` but can be downgraded to `Warning` by adding the following to your .editorconfig file:
 
 ```
 # AA0008: Invalid log message template format.
