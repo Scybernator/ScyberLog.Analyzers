@@ -12,6 +12,8 @@ By default this diagnostic has its severity set to `Error` but can be downgraded
 dotnet_diagnostic.AA0008.severity = warning
 ```
 
+The package is available on nuget as [ScyberLog.Analyzers](https://www.nuget.org/packages/ScyberLog.Analyzers/)
+
 Note that there is a built-in diagnostic (CA2023) for this in the upcoming NetAnalyzers release, at which point this package will be obsolete.
 
 <!--
